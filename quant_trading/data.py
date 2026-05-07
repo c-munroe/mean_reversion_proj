@@ -1,10 +1,10 @@
 """
-Data access utilities for historical and real‑time price series.
+Data access utilities for historical and real-time price series.
 
 This module provides thin wrappers around external data providers such as
 Yahoo Finance (via `yfinance`) and Alpaca.  The goal is to abstract
 data retrieval away from the rest of the strategy so that the backtest
-engine and live trading code do not need to worry about provider‑specific
+engine and live trading code do not need to worry about provider-specific
 details.  Where appropriate the functions will raise exceptions if
 data cannot be retrieved so that calling code can handle failures or
 retry appropriately.
@@ -12,10 +12,7 @@ retry appropriately.
 
 from __future__ import annotations
 
-import time
-import random
-from dataclasses import dataclass
-from typing import Optional, Any, Union
+from typing import Optional, Any
 
 import pandas as pd
 try:
@@ -49,9 +46,9 @@ def fetch_yfinance_data(
     symbol: str
         Ticker symbol, e.g. "SPY".
     start: str
-        ISO date string (YYYY‑MM‑DD) indicating the start of the data.
+        ISO date string (YYYY-MM-DD) indicating the start of the data.
     end: str
-        ISO date string (YYYY‑MM‑DD) indicating the end of the data (non‑inclusive).
+        ISO date string (YYYY-MM-DD) indicating the end of the data (non-inclusive).
     interval: str, optional
         Bar interval understood by yfinance (e.g. "1d", "1h", "5m").
 
@@ -87,7 +84,7 @@ def fetch_alpaca_bars(
 
     This function wraps the Alpaca `StockHistoricalDataClient` and returns a
     pandas DataFrame indexed by timestamp.  It deliberately keeps
-    provider‑specific details (like timezones and multi‑index handling)
+    provider-specific details (like timezones and multi-index handling)
     encapsulated.
 
     Parameters

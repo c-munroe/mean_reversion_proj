@@ -13,9 +13,14 @@ from alpaca.trading.enums import OrderSide, TimeInForce
 
 # === CONFIG ===
 SYMBOL = "SPY"
-LOOKBACK = 30
-ENTRY_Z = -2.0
-EXIT_Z = -0.5
+LOOKBACK = 40
+
+LONG_ENTRY_Z = -2.0
+LONG_EXIT_Z = -0.75
+
+SHORT_ENTRY_Z = 2.25
+SHORT_EXIT_Z = 0.0
+
 POSITION_SIZE = 1000  # dollars
 SLEEP_SECONDS = 60
 
@@ -127,19 +132,33 @@ def main() -> None:
                 continue
 
             prices = get_prices()
+            price = prices[-1]
             z = compute_z(prices)
             position = get_position()
 
             print(f"Z-score: {z:.2f} | Position: {position}")
 
-            if z < ENTRY_Z and position == 0:
-                qty = POSITION_SIZE / prices[-1]
+            # Enter long
+            if z < LONG_ENTRY_Z and position == 0:
+                qty = POSITION_SIZE / price
                 submit_order(OrderSide.BUY, qty)
-                print("BUY")
+                print("BUY LONG")
 
-            elif z >= EXIT_Z and position > 0:
-                submit_order(OrderSide.SELL, position)
-                print("SELL")
+            # Exit long
+            elif z >= LONG_EXIT_Z and position > 0:
+                submit_order(OrderSide.SELL, abs(position))
+                print("SELL LONG")
+
+            # Enter short
+            elif z > SHORT_ENTRY_Z and position == 0:
+                qty = int(POSITION_SIZE / price)  # safer for shorts: whole shares
+                submit_order(OrderSide.SELL, qty)
+                print("SHORT SELL")
+
+            # Exit short / buy to cover
+            elif z <= SHORT_EXIT_Z and position < 0:
+                submit_order(OrderSide.BUY, abs(position))
+                print("BUY TO COVER")
 
         except Exception as e:
             print("Error:", e)

@@ -19,4 +19,4 @@ venv/
 *.log
 
 # OS
-Thumbs.db
+Thumbs.db.vscode/

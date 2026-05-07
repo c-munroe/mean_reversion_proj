@@ -43,7 +43,7 @@ Trading rules:
 | Parameter | Value |
 |---|---:|
 | Symbol | SPY |
-| Lookback Window | 30 periods |
+| Lookback Window | 40 periods |
 | Long Entry Threshold | `z < -2.0` |
 | Long Exit Threshold | `z >= -0.75` |
 | Short Entry Threshold | `z > 2.25` |

@@ -34,7 +34,7 @@ Trading rules:
   Price is significantly above its rolling mean, so the strategy sells short.
 
 - **Short exit / cover:** `z <= 0.5`  
-  Price has partially reverted toward the mean, so the strategy buys to cover the short position.
+  Price has reverted to the mean, so the strategy buys to cover the short position.
 
 ---
 

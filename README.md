@@ -59,24 +59,35 @@ Trading rules:
 Using historical SPY data, the strategy produced the following sample results:
 
 ```text
-cumulative_return: 0.0706
-sharpe_ratio: 1.0106
-max_drawdown: -0.0181
-volatility: 0.0362
-win_rate: 0.9231
-num_trades: 13
-total_portfolio_value: $10706.23
+cumulative_return: 0.1196
+sharpe_ratio: 0.8058
+max_drawdown: -0.0297
+volatility: 0.0376
+win_rate: 0.7241
+num_trades: 29
+
+Initial portfolio value: $10,000.00
+Final portfolio value: $11,195.83
+PnL: $1,195.83
+PnL %: 11.96%
+
+Long trades: 17
+Short trades: 12
+Long PnL: $1,117.33
+Short PnL: $78.50
 ```
 
 ### Key Takeaways
 
-- Positive return of roughly 7% over the test period
-- Sharpe ratio near 1.0, suggesting solid risk-adjusted performance
-- Low maximum drawdown of roughly 1.8%
-- High win rate, consistent with mean reversion-style behavior
-- Strategy supports both long and short positions
+- Strategy produced a positive return of roughly 12.0% over the test period.
+- Final portfolio value increased from $10,000.00 to $11,195.83, generating $1,195.83 in profit.
+- Sharpe ratio of 0.81 suggests moderately positive risk-adjusted performance.
+- Maximum drawdown was relatively low at roughly 3.0%, meaning the strategy avoided large portfolio declines during the backtest.
+- Win rate was 72.4% across 29 trades, which is consistent with a mean-reversion strategy aiming to capture frequent smaller moves.
+- Most profits came from long trades, with long positions generating $1,117.33 and short positions adding $78.50.
+- The short side was profitable but contributed only modestly, suggesting it may help diversify the strategy without being the main profit driver.
 
-> These results are historical and do not guarantee future performance. They also do not account for every real-world trading constraint, such as borrow fees, hard-to-borrow restrictions, margin requirements, or live execution delays.
+> These results are historical and do not guarantee future performance. They also do not account for every real-world trading constraint, such as borrow fees, hard-to-borrow restrictions, margin requirements, liquidity limits, or live execution delays.
 
 ---
 
